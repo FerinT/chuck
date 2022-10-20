@@ -1,0 +1,18 @@
+<h1>Chuck Norris Jokes</h1>
+
+<div class="table-responsive mt-5">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Joke</th>
+      <th scope="col">Favourite</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  *ngFor="let chuckNorrisJokes of listOfChuckNorrisJokes">
+      <td>{{chuckNorrisJokes?.value}}</td>
+      <td> <button class="btn btn-info" (click)="addFavourite(chuckNorrisJokes)">favourite</button> </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
