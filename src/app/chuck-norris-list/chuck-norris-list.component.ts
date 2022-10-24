@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ChuckNorrisService} from "../services/chuck-norris/chuck-norris-service";
 import {ChuckNorrisJoke} from "../services/chuck-norris/chuck-norris-joke";
 import {LocalStorageService} from "../services/local-storage/local-storage-service";
+import {NgxSpinnerService} from "ngx-spinner";
 import {systemSettings} from "../shared/system-settings";
 
 
@@ -17,7 +18,8 @@ export class ChuckNorrisListComponent implements OnInit {
   private interval: any;
 
   constructor(private chuckNorrisService: ChuckNorrisService,
-              private localStorageService: LocalStorageService) {
+              private localStorageService: LocalStorageService,
+              private spinnerService: NgxSpinnerService) {
   }
 
   ngOnInit(): void {
@@ -30,6 +32,7 @@ export class ChuckNorrisListComponent implements OnInit {
   }
 
   private populateList(): void {
+    this.spinnerService.show();
     // clear list
     this.listOfChuckNorrisJokes = [];
 
@@ -37,6 +40,7 @@ export class ChuckNorrisListComponent implements OnInit {
     for (let i = 0; i < systemSettings.MAX_JOKES; i++) {
       this.getJoke();
     }
+    this.spinnerService.hide();
 
   }
 
@@ -66,7 +70,17 @@ export class ChuckNorrisListComponent implements OnInit {
       listOfFavourites.shift();
     }
     listOfFavourites.push(newFavourite);
-    this.localStorageService.set("list_of_favourites", listOfFavourites);
+    this.localStorageService.set(systemSettings.CACHE_FAVOURITES, listOfFavourites);
+
+    // remove joke from list and add a new one
+    this.removeJokeFromList(newFavourite);
+    this.getJoke();
+  }
+
+  removeJokeFromList(newFavourite: ChuckNorrisJoke): void {
+    this.listOfChuckNorrisJokes = this.listOfChuckNorrisJokes.filter((chuckNorrisJoke) => {
+      return chuckNorrisJoke.id != newFavourite.id;
+    });
   }
 
   ngOnDestroy() {
