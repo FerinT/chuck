@@ -59,11 +59,12 @@ export class ChuckNorrisListComponent implements OnInit, OnDestroy {
     // validate if its > 10
     // if so remove the first and add to the back
     let listOfFavourites: ChuckNorrisJoke[] = this.localStorageService.get(systemSettings.CACHE_FAVOURITES);
+    // rather do Ternary operation above
+    if (listOfFavourites === null ) {
+      listOfFavourites = [];
+    }
     if (!this.validateDuplicateLikes(newFavourite, listOfFavourites)) {
-      // rather do Ternary operation above
-      if (listOfFavourites === null) {
-        listOfFavourites = [];
-      }
+
       if (listOfFavourites.length >= systemSettings.MAX_JOKES) {
         listOfFavourites.shift();
       }
