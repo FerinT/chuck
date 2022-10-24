@@ -1,6 +1,6 @@
 <h1>Your Favourite Chuck Norris Jokes</h1>
 <div class="table-responsive mt-5">
-  <table *ngIf="listOfFavourites?.length > 0; else loggedOut" class="table">
+  <table *ngIf="listOfFavourites !== undefined && listOfFavourites.length > 0; else noData" class="table">
     <thead>
     <tr>
       <th scope="col"></th>
@@ -15,7 +15,7 @@
     </tbody>
   </table>
 
-  <ng-template #loggedOut>
+  <ng-template #noData>
     No favourites yet
     <i class="bi bi-search"></i>
   </ng-template>

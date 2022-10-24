@@ -17,6 +17,9 @@ export class ChuckNorrisFavouritesComponent implements OnInit {
 
   ngOnInit(): void {
     this.listOfFavourites = this.localStorageService.get(systemSettings.CACHE_FAVOURITES);
+    if (this.listOfFavourites === null) {
+      this.listOfFavourites = [];
+    }
   }
 
   unfavourite(id: string): void {
