@@ -1,6 +1,6 @@
 <h1>Your Favourite Chuck Norris Jokes</h1>
 <div class="table-responsive mt-5">
-  <table *ngIf="listOfFavourites.length > 0; else loggedOut" class="table">
+  <table *ngIf="listOfFavourites?.length > 0; else loggedOut" class="table">
     <thead>
     <tr>
       <th scope="col"></th>
