@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ChuckNorrisService} from "../services/chuck-norris/chuck-norris-service";
 import {ChuckNorrisJoke} from "../services/chuck-norris/chuck-norris-joke";
 import {LocalStorageService} from "../services/local-storage/local-storage-service";
@@ -11,7 +11,7 @@ import {systemSettings} from "../shared/system-settings";
   templateUrl: './chuck-norris-list.component.html',
   styleUrls: ['./chuck-norris-list.component.less']
 })
-export class ChuckNorrisListComponent implements OnInit {
+export class ChuckNorrisListComponent implements OnInit, OnDestroy {
 
   listOfChuckNorrisJokes: ChuckNorrisJoke[] = [];
 
