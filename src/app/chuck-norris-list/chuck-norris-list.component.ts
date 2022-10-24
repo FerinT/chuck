@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ChuckNorrisService} from "../services/chuck-norris/chuck-norris-service";
 import {ChuckNorrisJoke} from "../services/chuck-norris/chuck-norris-joke";
 import {LocalStorageService} from "../services/local-storage/local-storage-service";
+import {systemSettings} from "../shared/system-settings";
+
 
 @Component({
   selector: 'app-chuck-norris-list',
@@ -11,6 +13,7 @@ import {LocalStorageService} from "../services/local-storage/local-storage-servi
 export class ChuckNorrisListComponent implements OnInit {
 
   listOfChuckNorrisJokes: ChuckNorrisJoke[] = [];
+
   private interval: any;
 
   constructor(private chuckNorrisService: ChuckNorrisService,
@@ -31,7 +34,7 @@ export class ChuckNorrisListComponent implements OnInit {
     this.listOfChuckNorrisJokes = [];
 
     //re-populate with 10 jokes
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < systemSettings.MAX_JOKES; i++) {
       this.getJoke();
     }
 
@@ -40,7 +43,7 @@ export class ChuckNorrisListComponent implements OnInit {
   private getJoke(): void {
     this.chuckNorrisService.getJoke()
       .subscribe(response => {
-        if (this.listOfChuckNorrisJokes.length >= 10) {
+        if (this.listOfChuckNorrisJokes.length >= systemSettings.MAX_JOKES) {
           this.listOfChuckNorrisJokes.shift();
         }
         this.listOfChuckNorrisJokes.push(response);
@@ -53,13 +56,13 @@ export class ChuckNorrisListComponent implements OnInit {
     // if so remove the first and add to the back
     // check for duplicates?
     // can't fetch jokes via endpoint with id?
-    let listOfFavourites: ChuckNorrisJoke[] = this.localStorageService.get("list_of_favourites");
+    let listOfFavourites: ChuckNorrisJoke[] = this.localStorageService.get(systemSettings.CACHE_FAVOURITES);
 
     // rather do Ternary operation above
     if (listOfFavourites === null) {
       listOfFavourites = [];
     }
-    if (listOfFavourites.length >= 10) {
+    if (listOfFavourites.length >= systemSettings.MAX_JOKES) {
       listOfFavourites.shift();
     }
     listOfFavourites.push(newFavourite);
