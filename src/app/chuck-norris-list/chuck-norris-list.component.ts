@@ -58,29 +58,32 @@ export class ChuckNorrisListComponent implements OnInit {
     // get list of fav
     // validate if its > 10
     // if so remove the first and add to the back
-    // check for duplicates?
-    // can't fetch jokes via endpoint with id?
     let listOfFavourites: ChuckNorrisJoke[] = this.localStorageService.get(systemSettings.CACHE_FAVOURITES);
+    if (!this.validateDuplicateLikes(newFavourite, listOfFavourites)) {
+      // rather do Ternary operation above
+      if (listOfFavourites === null) {
+        listOfFavourites = [];
+      }
+      if (listOfFavourites.length >= systemSettings.MAX_JOKES) {
+        listOfFavourites.shift();
+      }
+      listOfFavourites.push(newFavourite);
+      this.localStorageService.set(systemSettings.CACHE_FAVOURITES, listOfFavourites);
 
-    // rather do Ternary operation above
-    if (listOfFavourites === null) {
-      listOfFavourites = [];
+      // remove joke from list and add a new one
+      this.removeJokeFromList(newFavourite);
+      this.getJoke();
     }
-    if (listOfFavourites.length >= systemSettings.MAX_JOKES) {
-      listOfFavourites.shift();
-    }
-    listOfFavourites.push(newFavourite);
-    this.localStorageService.set(systemSettings.CACHE_FAVOURITES, listOfFavourites);
-
-    // remove joke from list and add a new one
-    this.removeJokeFromList(newFavourite);
-    this.getJoke();
   }
 
   removeJokeFromList(newFavourite: ChuckNorrisJoke): void {
     this.listOfChuckNorrisJokes = this.listOfChuckNorrisJokes.filter((chuckNorrisJoke) => {
       return chuckNorrisJoke.id != newFavourite.id;
     });
+  }
+
+  validateDuplicateLikes(newFavourite: ChuckNorrisJoke, listOfFavourites: ChuckNorrisJoke[]): boolean {
+    return listOfFavourites.includes(newFavourite, 0);
   }
 
   ngOnDestroy() {
