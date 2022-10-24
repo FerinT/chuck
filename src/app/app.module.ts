@@ -9,6 +9,7 @@ import { ChuckNorrisListComponent } from './chuck-norris-list/chuck-norris-list.
 import { ChuckNorrisFavouritesComponent } from './chuck-norris-favourites/chuck-norris-favourites.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {LocalStorageService} from "./services/local-storage/local-storage-service";
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {LocalStorageService} from "./services/local-storage/local-storage-servic
     FormsModule,
     ReactiveFormsModule,
     TooltipModule.forRoot(),
+    NgxSpinnerModule
   ],
   providers: [LocalStorageService],
   bootstrap: [AppComponent]
