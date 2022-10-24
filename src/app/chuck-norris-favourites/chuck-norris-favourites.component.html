@@ -9,7 +9,7 @@
     <tbody>
     <tr  *ngFor="let chuckNorrisJokes of listOfFavourites">
       <td>{{chuckNorrisJokes?.value}}</td>
-      <td> <button class="btn btn-info">unfavourite</button> </td>
+      <td> <button class="btn btn-info" (click)="unfavourite(chuckNorrisJokes.id)">unfavourite</button> </td>
     </tr>
     </tbody>
   </table>
