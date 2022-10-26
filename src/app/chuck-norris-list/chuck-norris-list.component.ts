@@ -4,6 +4,7 @@ import {ChuckNorrisJoke} from "../services/chuck-norris/chuck-norris-joke";
 import {LocalStorageService} from "../services/local-storage/local-storage-service";
 import {NgxSpinnerService} from "ngx-spinner";
 import {systemSettings} from "../shared/system-settings";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -19,7 +20,8 @@ export class ChuckNorrisListComponent implements OnInit, OnDestroy {
 
   constructor(private chuckNorrisService: ChuckNorrisService,
               private localStorageService: LocalStorageService,
-              private spinnerService: NgxSpinnerService) {
+              private spinnerService: NgxSpinnerService,
+              private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -74,6 +76,7 @@ export class ChuckNorrisListComponent implements OnInit, OnDestroy {
       // remove joke from list and add a new one
       this.removeJokeFromList(newFavourite);
       this.getJoke();
+      this.toastrService.info('Added to favourites!');
     }
   }
 

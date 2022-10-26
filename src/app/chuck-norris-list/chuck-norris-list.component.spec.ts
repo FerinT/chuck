@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChuckNorrisListComponent } from './chuck-norris-list.component';
 import {LocalStorageService} from "../services/local-storage/local-storage-service";
 import {HttpClientModule} from "@angular/common/http";
+import {ToastrModule, ToastrService} from "ngx-toastr";
 
 describe('ChuckNorrisListComponent', () => {
   let component: ChuckNorrisListComponent;
@@ -10,9 +11,9 @@ describe('ChuckNorrisListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, ToastrModule.forRoot()],
       declarations: [ ChuckNorrisListComponent ],
-      providers: [LocalStorageService]
+      providers: [LocalStorageService, ToastrService]
     })
     .compileComponents();
 

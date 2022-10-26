@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChuckNorrisFavouritesComponent } from './chuck-norris-favourites.component';
 import {LocalStorageService} from "../services/local-storage/local-storage-service";
+import {ToastrModule, ToastrService} from "ngx-toastr";
 
 describe('ChuckNorrisFavouritesComponent', () => {
   let component: ChuckNorrisFavouritesComponent;
@@ -9,8 +10,9 @@ describe('ChuckNorrisFavouritesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ToastrModule.forRoot()],
       declarations: [ ChuckNorrisFavouritesComponent ],
-      providers: [LocalStorageService]
+      providers: [LocalStorageService, ToastrService]
     })
     .compileComponents();
 
