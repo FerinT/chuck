@@ -29,3 +29,4 @@ Run `ng generate component component-name` to generate a new component. You can 
 - UI look and feel
   - New table component
   - reusable header
+  - Add a wrapper for toast component

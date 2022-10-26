@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LocalStorageService} from "../services/local-storage/local-storage-service";
 import {ChuckNorrisJoke} from "../services/chuck-norris/chuck-norris-joke";
 import {systemSettings} from "../shared/system-settings";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-chuck-norris-favourites',
@@ -12,7 +13,8 @@ export class ChuckNorrisFavouritesComponent implements OnInit {
 
   listOfFavourites: ChuckNorrisJoke[] = [];
 
-  constructor(private localStorageService: LocalStorageService) {
+  constructor(private localStorageService: LocalStorageService,
+              private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -28,6 +30,7 @@ export class ChuckNorrisFavouritesComponent implements OnInit {
     });
 
     this.localStorageService.set(systemSettings.CACHE_FAVOURITES, this.listOfFavourites);
+    this.toastrService.warning('Removed from favourites')
   }
 
 }

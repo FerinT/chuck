@@ -10,6 +10,8 @@ import { ChuckNorrisFavouritesComponent } from './chuck-norris-favourites/chuck-
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {LocalStorageService} from "./services/local-storage/local-storage-service";
 import {NgxSpinnerModule} from "ngx-spinner";
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import {NgxSpinnerModule} from "ngx-spinner";
     FormsModule,
     ReactiveFormsModule,
     TooltipModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [LocalStorageService],
   bootstrap: [AppComponent]
