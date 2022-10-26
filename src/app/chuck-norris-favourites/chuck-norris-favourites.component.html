@@ -1,6 +1,6 @@
 <h1>Your Favourite Chuck Norris Jokes</h1>
 <div class="table-responsive mt-5">
-  <table *ngIf="listOfFavourites !== undefined && listOfFavourites.length > 0; else noData" class="table">
+  <table *ngIf="listOfFavourites !== undefined && listOfFavourites.length > 0; else noData" class="table table-striped">
     <thead>
     <tr>
       <th scope="col"></th>
@@ -10,13 +10,13 @@
     <tbody>
     <tr  *ngFor="let chuckNorrisJokes of listOfFavourites">
       <td>{{chuckNorrisJokes?.value}}</td>
-      <td> <button class="btn btn-info" (click)="unfavourite(chuckNorrisJokes.id)">unfavourite</button> </td>
+      <td> <button class="btn btn-info" (click)="unfavourite(chuckNorrisJokes.id)">remove</button> </td>
     </tr>
     </tbody>
   </table>
 
   <ng-template #noData>
-    No favourites yet
+    <em>No favourites yet</em>
     <i class="bi bi-search"></i>
   </ng-template>
 </div>

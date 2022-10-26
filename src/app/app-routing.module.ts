@@ -5,6 +5,7 @@ import {ChuckNorrisListComponent} from "./chuck-norris-list/chuck-norris-list.co
 
 const routes: Routes = [
   {path: "favourites", component: ChuckNorrisFavouritesComponent},
+  {path: "home", component: ChuckNorrisListComponent},
   {path: "", component: ChuckNorrisListComponent},
 ];
 

@@ -1,11 +1,11 @@
 <h1>Chuck Norris Jokes</h1>
 
 <div class="table-responsive mt-5">
-  <table  *ngIf="listOfChuckNorrisJokes.length > 1; else loggedOut" class="table">
+  <table  *ngIf="listOfChuckNorrisJokes.length > 9; else noData" class="table table-striped">
     <thead>
     <tr>
       <th scope="col">Joke</th>
-      <th scope="col">Favourite</th>
+      <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
@@ -16,8 +16,8 @@
     </tr>
     </tbody>
   </table>
-  <ng-template #loggedOut>
-    No Jokes to display
+  <ng-template #noData>
+    <em>No Jokes to display</em>
     <i class="bi bi-search"></i>
   </ng-template>
 </div>
